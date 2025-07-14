@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MythicHunter
 {
-    internal class Hero
+    public class Hero
     {
         private int power;
         private int mana;
