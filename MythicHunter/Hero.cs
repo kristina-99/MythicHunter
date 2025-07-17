@@ -11,6 +11,9 @@ namespace MythicHunter
         private int power;
         private int mana;
         private int health;
+        private List<string> inventory;
+        private int currentXposition;
+        private int currentYposition;
 
         public int Power 
         {
@@ -46,6 +49,11 @@ namespace MythicHunter
             {
                 this.health = value;
             }
+        }
+
+        public void addItemToInventory(string newItem)
+        {
+            inventory.Add(newItem);
         }
     }
 }
