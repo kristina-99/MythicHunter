@@ -22,7 +22,7 @@ namespace MythicHunter
 
             Hero myHero = new Hero();
 
-            map[myHero.CurrentXPosition][myHero.CurrentXPosition] = 'H';
+            map[myHero.CurrentYPosition][myHero.CurrentXPosition] = 'H';
 
             while (!gameOver)
             {
@@ -35,7 +35,17 @@ namespace MythicHunter
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("Please enter the next direction (W, A, S or D):");
+
+                Console.WriteLine("Please enter the next direction (w, a, s or d):");
+                string userInput = Console.ReadLine();
+
+                map[myHero.CurrentYPosition][myHero.CurrentXPosition] = '.';
+
+                myHero.Move(userInput[0]);
+
+                map[myHero.CurrentYPosition][myHero.CurrentXPosition] = 'H';
+
+                Console.Clear();
             }
         }
     }

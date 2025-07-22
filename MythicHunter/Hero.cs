@@ -88,9 +88,9 @@ namespace MythicHunter
             {
                 case 'w':
                     {
-                        if (currentYposition < 3)
+                        if (currentYposition > 0)
                         {
-                            currentYposition++;
+                            currentYposition--;
                         }
                         else
                         {
@@ -100,9 +100,9 @@ namespace MythicHunter
                     }
                 case 's':
                     {
-                        if (currentYposition > 0)
+                        if (currentYposition < 3)
                         {
-                            currentYposition--;
+                            currentYposition++;
                         }
                         else
                         {
