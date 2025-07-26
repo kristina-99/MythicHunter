@@ -112,7 +112,7 @@ namespace MythicHunter
                     }
                 case 'd':
                     {
-                        if (currentYposition < 5)
+                        if (currentXposition < 5)
                         {
                             currentXposition++;
                         }
@@ -124,7 +124,7 @@ namespace MythicHunter
                     }
                 case 'a':
                     {
-                        if (currentYposition > 0)
+                        if (currentXposition > 0)
                         {
                             currentXposition--;
                         }
