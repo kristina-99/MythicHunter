@@ -12,25 +12,19 @@ namespace MythicHunter
         {
             bool gameOver = false;
 
-            char[][] map = new char[][]
-            {
-                new char[]{ '.', '.', '.', '.', '.', '.'},
-                new char[]{ '.', '.', 'M', '.', '.', '.'},
-                new char[]{ '.', '.', '#', '.', '#', '#'},
-                new char[]{ '.', 'I', '#', '.', '.', '.'}
-            };
+            char[,] map = GenerateMap();
 
             Hero myHero = new Hero();
 
-            map[myHero.CurrentYPosition][myHero.CurrentXPosition] = 'H';
+            map[myHero.CurrentYPosition, myHero.CurrentXPosition] = 'H';
 
             while (!gameOver)
             {
-                for (int i = 0; i < map.Length; i++)
+                for (int i = 0; i < map.GetLength(0); i++)
                 {
-                    for (int j = 0; j < map[i].Length; j++)
+                    for (int j = 0; j < map.GetLength(1); j++)
                     {
-                        Console.Write(map[i][j]);
+                        Console.Write(map[i,j]);
                     }
                     Console.WriteLine();
                 }
@@ -39,14 +33,59 @@ namespace MythicHunter
                 Console.WriteLine("Please enter the next direction (w, a, s or d):");
                 string userInput = Console.ReadLine();
 
-                map[myHero.CurrentYPosition][myHero.CurrentXPosition] = '.';
+                map[myHero.CurrentYPosition,myHero.CurrentXPosition] = '.';
 
                 myHero.Move(userInput[0]);
 
-                map[myHero.CurrentYPosition][myHero.CurrentXPosition] = 'H';
+                map[myHero.CurrentYPosition,myHero.CurrentXPosition] = 'H';
 
                 Console.Clear();
             }
+        }
+
+        static char[,] GenerateMap()
+        {
+            char[,] map = new char[4,6];
+
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    map[i,j] = '.';
+                }
+            }
+
+            map[2, 2] = '#';
+            map[2, 4] = '#';
+            map[2, 5] = '#';
+            map[3, 2] = '#';
+
+            Random rng = new Random();
+
+            int monsterY = rng.Next(1, 3);
+            int monsterX = rng.Next(1, 5);
+
+            map[monsterY, monsterX] = 'M';
+
+            int itemY = rng.Next(1, 3);
+            int itemX = rng.Next(1, 5);
+
+            if (itemY != monsterY && itemX != monsterX)
+            {
+                map[itemY, itemX] = 'I';
+            }
+            else
+            {
+                while (itemY == monsterY || itemX == monsterX)
+                {
+                    itemY = rng.Next(1, 3);
+                    itemX = rng.Next(1, 5);
+                }
+
+                map[itemY, itemX] = 'I';
+            }
+
+            return map;
         }
     }
 }
