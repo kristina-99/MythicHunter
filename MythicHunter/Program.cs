@@ -20,16 +20,8 @@ namespace MythicHunter
 
             while (!gameOver)
             {
-                for (int i = 0; i < map.GetLength(0); i++)
-                {
-                    for (int j = 0; j < map.GetLength(1); j++)
-                    {
-                        Console.Write(map[i,j]);
-                    }
-                    Console.WriteLine();
-                }
-
-
+                PrintMap(map);
+           
                 Console.WriteLine("Please enter the next direction (w, a, s or d):");
                 string userInput = Console.ReadLine();
 
@@ -40,6 +32,18 @@ namespace MythicHunter
                 map[myHero.CurrentYPosition,myHero.CurrentXPosition] = 'H';
 
                 Console.Clear();
+            }
+        }
+
+        static void PrintMap(char[,] map)
+        {
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    Console.Write(map[i, j]);
+                }
+                Console.WriteLine();
             }
         }
 
