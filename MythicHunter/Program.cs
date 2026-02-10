@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,11 +28,32 @@ namespace MythicHunter
 
                 map[myHero.CurrentYPosition,myHero.CurrentXPosition] = '.';
 
+                //saving the position in case we need to go back
+                int previousY = myHero.CurrentYPosition;
+                int previousX = myHero.CurrentXPosition;
+
                 myHero.Move(userInput[0]);
 
-                map[myHero.CurrentYPosition,myHero.CurrentXPosition] = 'H';
+                if (map[myHero.CurrentYPosition, myHero.CurrentXPosition] == 'M' || map[myHero.CurrentYPosition, myHero.CurrentXPosition] == '#')
+                {
+                    myHero.CurrentYPosition = previousY;
+                    myHero.CurrentXPosition = previousX;
+                    map[myHero.CurrentYPosition, myHero.CurrentXPosition] = 'H';
+                    Console.Clear();
+                    continue;
+                }
+                else
+                {
+                    map[myHero.CurrentYPosition, myHero.CurrentXPosition] = 'H';
+                }
 
                 Console.Clear();
+
+                if (myHero.CurrentYPosition == 3 && myHero.CurrentXPosition == 5)
+                {
+                    gameOver = true;
+                    Console.WriteLine("Congratulations, you won the game!");
+                }
             }
         }
 
